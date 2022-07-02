@@ -1,14 +1,11 @@
-class Test {
+package lamda
 
-    data class Person(
-        val name: String,
-        val age: Int
-    )
+class LambdaExam {
 
     fun people1(): Person { //maxBy
-        var people = listOf(Person("Alice", 29), Person("Bob", 31))
+        val people = listOf(Person("Alice", 29), Person("Bob", 31))
         people.maxBy { p: Person -> p.age }
-        people.maxBy() { p: Person -> p.age }
+        people.maxBy { p: Person -> p.age }
         return people.maxBy {
             it.age
             it.name
@@ -16,15 +13,22 @@ class Test {
     }
 
     fun people2(): String { //  field joinToString
-        var people = listOf(Person("이몽룡", 29), Person("성춘향", 25))
+        val people = listOf(Person("이몽룡", 29), Person("성춘향", 25))
         return people.joinToString(" ") { p: Person -> p.name }
 //        return people.joinToString(" ") { it.name }
     }
 
+    fun people3(): String { //  field joinToString
+        val people = listOf(Person("이몽룡", 29), Person("성춘향", 25))
+        return people.joinToString {
+            "${it.name} ${it.age}"
+        }
+    }
+
     fun printMessagesWithPrefix(messages: Collection<String>, prefix: String) {
 //        타입을 명시 하는 편이 좋나.
-        messages.forEach { messages ->
-            System.err.println("$prefix : $messages")
+        messages.forEach {
+            System.err.println("$prefix : $it")
         }
     }
 
@@ -45,15 +49,18 @@ class Test {
 
 fun main() {
 
-    val lambdaTest = Test()
+    val lambdaTest = LambdaExam()
     System.err.println(lambdaTest.people1())
     System.err.println(lambdaTest.people2())
+    System.err.println(lambdaTest.people3())
 
-    val message = listOf<String>("404", "403", "402")
+    val message = listOf("404", "403", "402")
     lambdaTest.printMessagesWithPrefix(message, "error")
 
     val responseError = listOf("404 error", "418 error", "200 ok ", "500 error")
     lambdaTest.printProblemCounts(responseError)
 
+    val createPerson = ::Person
+    System.err.println(createPerson("test", 21))
 
 }
