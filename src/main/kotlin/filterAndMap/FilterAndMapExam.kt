@@ -1,4 +1,0 @@
-package filterAndMap
-
-class FilterAndMapExam {
-}
