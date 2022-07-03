@@ -22,6 +22,14 @@ fun main() {
      */
     System.err.println(books.flatMap { it.authors }.toSet())
 
+    /**
+     *  flatMapExam :   인자로 받은 람다를 컬렉션의 모든 객체에 적용시킨다.
+     *  "abc" => [a][b][c]
+     *  "cde" => [c][d][e]
+     *  flatMapExam.flatMap => [a][b][c][c][d][e]
+     */
 
+    val flatMapExam = listOf("abc", "cde")
+    flatMapExam.flatMap { it.toList() }
 
 }
