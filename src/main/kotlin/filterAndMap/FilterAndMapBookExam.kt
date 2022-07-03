@@ -60,9 +60,12 @@ fun main() {
 
     /**
      * Generate sequence
+     * @info : generateSequence = it + 1
      */
-    val naturalNumbers = generateSequence(0) { it + 1 }
-    naturalNumbers.takeWhile { it <= 100 }.sum()
+    val sumTest = generateSequence(0) { it + 1 }
+    sumTest.takeWhile { it <= 100 }.sum().let {
+//        System.err.println(it)
+    }
 
 
 }
